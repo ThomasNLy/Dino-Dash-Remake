@@ -64,7 +64,7 @@ public class SpriteObject : MonoBehaviour
     }
     public virtual void SecondJump()
     {
-        rb.AddForce(Vector2.up * stats.jumpForce * 2, ForceMode2D.Impulse);  
+        rb.AddForce(Vector2.up * stats.jumpForce * 1.5f, ForceMode2D.Impulse);  
     }
 
     public virtual void HandleJumping()

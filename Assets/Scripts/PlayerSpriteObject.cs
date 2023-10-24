@@ -58,8 +58,8 @@ public class PlayerSpriteObject : SpriteObject
         {
             Debug.Log("Player got hit");
         }
+
+       
     }
-
-
 
 }

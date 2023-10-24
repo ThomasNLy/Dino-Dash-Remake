@@ -30,4 +30,20 @@ public class ObstacleSpriteObject : SpriteObject
     {
         this.transform.position = pos;
     }
+
+
+    /**
+     * used mmainly for power up items colliding with the player
+     */
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        Debug.Log("player hit");
+        if (collision.gameObject.CompareTag(Tags.player))
+        {
+
+            this.Spawn(PowerUpManager.Instance.spawnLoc.position + Vector3.down * 20);
+
+        }
+    }
 }

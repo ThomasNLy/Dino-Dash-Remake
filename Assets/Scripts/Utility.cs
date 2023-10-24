@@ -6,5 +6,6 @@ public static class Tags
 {
     public static string player = "Player";
     public static string obstacle = "Obstacle";
+    public static string powerup = "Powerup";
 
 }
