@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c495843d2dc1f3b44adb875e61e89894, type: 3}
   m_Name: Obstacle Stats
   m_EditorClassIdentifier: 
-  xspeed: -10
+  xspeed: -9
   yspeed: 0
   jumpForce: 0

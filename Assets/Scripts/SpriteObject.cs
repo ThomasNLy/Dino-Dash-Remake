@@ -6,7 +6,7 @@ public class SpriteObject : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField]
-    private SpriteStatsScriptableObject stats;
+    protected SpriteStatsScriptableObject stats;
 
     [SerializeField]
     protected float feetOffset;

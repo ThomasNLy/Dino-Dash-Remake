@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
@@ -50,6 +51,7 @@ public class ObstacleManager : MonoBehaviour
 
             ObstacleSpriteObject obj = Instantiate(obstaclePrefab).GetComponent<ObstacleSpriteObject>();
             obj.Init(startingLoc);
+            obj.transform.SetParent(GameObject.Find("World").transform, true);
             obstacleList[i] = obj.gameObject;
 
         }

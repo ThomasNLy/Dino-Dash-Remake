@@ -14,6 +14,9 @@ public class InputController : MonoBehaviour
     // Start is called before the first frame update
 
 
+    [Header("Debug")]
+    private bool pauseGame;
+
     private void Awake()
     {
         if (Instance != null && this != Instance)
@@ -31,8 +34,26 @@ public class InputController : MonoBehaviour
     {
         inputs = new PlayerInputActions();
         inputs.Gameplay.Enable();
+        inputs.Menu.Enable();
         inputs.Gameplay.Jump.performed += onJump;
         inputs.Gameplay.Attack.performed += onAttack;
+
+        //pause menu 
+        inputs.Menu.Exit.performed += ctx =>
+        {
+
+            pauseGame = !pauseGame;
+            UIManager.Instance.ShowPauseMenu(pauseGame);
+            if (pauseGame)
+            {
+                inputs.Menu.Enable();
+                inputs.Gameplay.Disable();
+            }
+            else
+            {
+                inputs.Gameplay.Enable();
+            }
+        };
     }
 
     // Update is called once per frame
@@ -54,9 +75,10 @@ public class InputController : MonoBehaviour
 
     private void onAttack(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && GameManager.Instance.PowerUpPoints >= 5)
         {
-            Debug.Log("Attack");
+            
+            GameManager.Instance.PowerUpPoints = 0; 
             player.laser.SetActive(true);
             player.isAttacking = true;
         }

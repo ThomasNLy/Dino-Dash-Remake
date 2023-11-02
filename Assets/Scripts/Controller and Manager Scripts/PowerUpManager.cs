@@ -59,7 +59,7 @@ public class PowerUpManager : MonoBehaviour
             prefabList[i] = Instantiate(powerupPrefab, startingLoc, Quaternion.identity);
 
             //set the parent to the power up manager and keep it's transform component to be world space rather than relative to parent
-            prefabList[i].transform.SetParent(this.gameObject.transform, true);
+            prefabList[i].transform.SetParent(GameObject.Find("Powerups").transform, true);
         }
 
     }
@@ -80,7 +80,7 @@ public class PowerUpManager : MonoBehaviour
             if (currentObj.transform.position.x < despawnLoc.position.x)
             {
                 float randomYpos = Random.Range(0, 5);
-                currentObj.GetComponent<ObstacleSpriteObject>().Spawn(spawnLoc.position + (Vector3.up * randomYpos));
+                currentObj.GetComponent<PowerupSpriteObject>().Spawn(spawnLoc.position + (Vector3.up * randomYpos));
             }
         }
         index++;

@@ -19,6 +19,7 @@ public class ObstacleSpriteObject : SpriteObject
 
     public override void UpdateSprite()
     {
+        stats.xspeed = GameManager.Instance.scrollingSpeed;
         Move();
     }
     public void Init(Vector3 spawnLoc)
@@ -32,18 +33,5 @@ public class ObstacleSpriteObject : SpriteObject
     }
 
 
-    /**
-     * used mmainly for power up items colliding with the player
-     */
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-        Debug.Log("player hit");
-        if (collision.gameObject.CompareTag(Tags.player))
-        {
-
-            this.Spawn(PowerUpManager.Instance.spawnLoc.position + Vector3.down * 20);
-
-        }
-    }
+   
 }
