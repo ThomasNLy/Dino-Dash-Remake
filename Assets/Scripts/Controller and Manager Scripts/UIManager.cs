@@ -8,8 +8,8 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     public Slider powerupBar;
-    public GameObject pauseText;
 
+    public GameObject pauseMenu;
 
     private void Awake()
     {
@@ -21,6 +21,8 @@ public class UIManager : MonoBehaviour
         else
         {
             Instance = this;
+            pauseMenu = GameObject.Find("Pause Menu");
+            pauseMenu.SetActive(false);
             
         }
 
@@ -42,6 +44,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowPauseMenu(bool pauseGame)
     {
-        pauseText.SetActive(pauseGame);
+        
+        pauseMenu.SetActive(pauseGame);
     }
 }

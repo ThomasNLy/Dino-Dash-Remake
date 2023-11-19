@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
+            Time.timeScale = 1.0f;
         }
     }
 
@@ -44,5 +45,15 @@ public class GameManager : MonoBehaviour
     {
         get { return powerUpPoints; }
         set { powerUpPoints = value; }
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
     }
 }
