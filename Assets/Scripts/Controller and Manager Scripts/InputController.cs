@@ -48,10 +48,12 @@ public class InputController : MonoBehaviour
             {
                 inputs.Menu.Enable();
                 inputs.Gameplay.Disable();
+                GameManager.Instance.PauseGame();
             }
             else
             {
                 inputs.Gameplay.Enable();
+                GameManager.Instance.ResumeGame();
             }
         };
     }
@@ -60,7 +62,7 @@ public class InputController : MonoBehaviour
     void Update()
     {
         player.UpdateSprite();
-        player.laser.SetActive(player.isAttacking);
+        player.HandleAttack();
     }
 
 
@@ -78,9 +80,8 @@ public class InputController : MonoBehaviour
         if (context.performed && GameManager.Instance.PowerUpPoints >= 5)
         {
             
-            GameManager.Instance.PowerUpPoints = 0; 
-            player.laser.SetActive(true);
-            player.isAttacking = true;
+            GameManager.Instance.PowerUpPoints = 0;
+            player.Attack();
         }
         
     }
