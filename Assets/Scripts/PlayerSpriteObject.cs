@@ -51,6 +51,16 @@ public class PlayerSpriteObject : SpriteObject
         
     }
 
+    public void Attack()
+    {
+        isAttacking = true;
+        laser.SetActive(true);
+    }
+    public void HandleAttack()
+    {
+        laser.SetActive(isAttacking);
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
