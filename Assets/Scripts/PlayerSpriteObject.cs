@@ -33,6 +33,7 @@ public class PlayerSpriteObject : SpriteObject
         HandleAnimations();
         base.UpdateSprite();
         
+
     }
 
 
@@ -40,7 +41,7 @@ public class PlayerSpriteObject : SpriteObject
     {
         isInAir = rb.velocity.y != 0;
         animator.SetBool("IsAttacking", isAttacking);
-        animator.SetBool("IsJumping", isJumping);
+        animator.SetBool("IsJumping", this.isJumping);
         animator.SetBool("IsGrounded", grounded);
     }
 
