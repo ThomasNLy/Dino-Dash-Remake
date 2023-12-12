@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MainMenuInputController : MonoBehaviour
 {
@@ -27,16 +28,27 @@ public class MainMenuInputController : MonoBehaviour
     {
         inputs = new PlayerInputActions();
         inputs.Menu.Enable();
-        inputs.Menu.Start.performed += ctx => 
-        {
-            Debug.Log("Game Started");
-            startButton.LoadScene("Level1");
-        };
+        inputs.Menu.Start.performed += StartGame;
+
+        inputs.Menu.Exit.performed += ExitGame;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        inputs.Menu.Exit.performed -= ExitGame;
+        inputs.Menu.Start.performed -=StartGame;
+    }
+
+    private void ExitGame(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("main menu, Exit GAME");
+      
+    }
+
+    private void StartGame(InputAction.CallbackContext ctx)
+    {
+
+        Debug.Log("Game Started");
+        startButton.LoadScene("Level1");
     }
 }
