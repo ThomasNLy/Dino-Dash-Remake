@@ -26,7 +26,7 @@ public class ScrollingParallax : MonoBehaviour
         image.transform.Translate(new Vector3(scrollingSpeed, 0, 0) * Time.deltaTime);
         if (image.transform.position.x + imageTextureWidthHalf < -30)
         {
-            image.transform.position = new Vector3(30 + imageTextureWidthHalf, image.transform.position.y, 0);
+            image.transform.position = new Vector3(imageTextureWidthHalf + 2, image.transform.position.y, 0);
         }
 
 
@@ -37,6 +37,8 @@ public class ScrollingParallax : MonoBehaviour
         get { return scrollingSpeed; } 
         set { scrollingSpeed = value; } 
     }
+
+   
 
 
 }
