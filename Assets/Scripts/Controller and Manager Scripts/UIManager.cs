@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class UIManager : MonoBehaviour
     public Slider powerupBar;
 
     public GameObject pauseMenu;
+    public TextMeshProUGUI scoreText;
 
     private void Awake()
     {
@@ -35,13 +37,11 @@ public class UIManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateUI()
     {
         powerupBar.value = GameManager.Instance.PowerUpPoints;
-        
+        scoreText.text = GameManager.Instance.Score.ToString();
     }
-
     public void ShowPauseMenu(bool pauseGame)
     {
         
