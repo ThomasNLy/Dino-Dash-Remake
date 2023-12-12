@@ -39,23 +39,7 @@ public class InputController : MonoBehaviour
         inputs.Gameplay.Attack.performed += onAttack;
 
         //pause menu 
-        inputs.Menu.Exit.performed += ctx =>
-        {
-
-            pauseGame = !pauseGame;
-            UIManager.Instance.ShowPauseMenu(pauseGame);
-            if (pauseGame)
-            {
-                inputs.Menu.Enable();
-                inputs.Gameplay.Disable();
-                GameManager.Instance.PauseGame();
-            }
-            else
-            {
-                inputs.Gameplay.Enable();
-                GameManager.Instance.ResumeGame();
-            }
-        };
+        inputs.Menu.Exit.performed += OnExit;
     }
 
     // Update is called once per frame
@@ -63,8 +47,34 @@ public class InputController : MonoBehaviour
     {
         player.UpdateSprite();
         player.HandleAttack();
+        
     }
 
+    private void OnDestroy()
+    {
+        inputs.Menu.Exit.performed -= OnExit;
+        inputs.Gameplay.Jump.performed -= onJump;
+        inputs.Gameplay.Attack.performed -= onAttack;
+    }
+
+
+    private void OnExit(InputAction.CallbackContext context)
+    {
+        Debug.Log("gameplay menu");
+        GameManager.Instance.ToggleGamePaused();
+
+        if (GameManager.Instance.GamePaused)
+        {
+            inputs.Menu.Enable();
+            inputs.Gameplay.Disable();
+
+        }
+        else
+        {
+            inputs.Gameplay.Enable();
+
+        }
+    }
 
 
     private void onJump(InputAction.CallbackContext context)
@@ -84,5 +94,40 @@ public class InputController : MonoBehaviour
             player.Attack();
         }
         
+    }
+
+
+    public void PauseGame()
+    {
+       // GameManager.Instance.ToggleGamePaused();
+
+        if (GameManager.Instance.GamePaused)
+        {
+            inputs.Menu.Enable();
+            inputs.Gameplay.Disable();
+
+        }
+        else
+        {
+            inputs.Gameplay.Enable();
+
+        }
+    }
+
+    public void EnableGameplayControls()
+    {
+        inputs.Gameplay.Enable();
+    }
+    public void DisableGameplayControls()
+    {
+        inputs.Gameplay.Disable();
+    }
+    public void EnableMenuControls()
+    {
+        inputs.Menu.Enable();
+    }
+    public void DisableMenuControls()
+    {
+        inputs.Menu.Disable();
     }
 }
