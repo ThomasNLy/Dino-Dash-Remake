@@ -52,11 +52,11 @@ public class SpriteObject : MonoBehaviour
 
     public virtual void Jump()
     {
-        if (grounded)
-        { 
+        //if (grounded)
+        //{ 
             rb.AddForce(Vector2.up * stats.jumpForce, ForceMode2D.Impulse);
             
-        }
+        //}
        
        
         
