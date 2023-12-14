@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Game State")]
     private bool gamePaused;
+    private bool gameOver;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -42,9 +43,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         powerUpPoints = 0;
+        //score = 0;
         score = 0;
         scrollingSpeed = -5;
         scoreTimer = 0f;
+        Debug.Log(score);
 
 
     }
@@ -53,7 +56,15 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         floor.ScrollingSpeed = scrollingSpeed;
-        ScoreTimer();
+        if (!gameOver)
+        {
+            ScoreTimer();
+        }
+        else
+        {
+            PauseGame();
+        }
+        
       
         UIManager.Instance.UpdateUI();
      
@@ -75,6 +86,20 @@ public class GameManager : MonoBehaviour
     {
         get { return gamePaused; }
         set { gamePaused = value; }
+    }
+
+    public bool IsGameOver
+    {
+        get { return gameOver; }
+        set { gameOver = value; }
+    }
+
+    public void GameOver()
+    {
+        UIManager.Instance.TurnOnGameOverScreen();
+        gameOver = true;
+        SaveFileManager.Instance.SaveScore(score);
+
     }
 
 
@@ -103,7 +128,13 @@ public class GameManager : MonoBehaviour
             ResumeGame();
         }
         Debug.Log($"Game manager is paused: {gamePaused}");
-        UIManager.Instance.ShowPauseMenu(gamePaused);
+
+        if (!gameOver)
+        {
+            UIManager.Instance.ShowPauseMenu(gamePaused);
+
+        }
+     
     }
 
     private void ScoreTimer()
