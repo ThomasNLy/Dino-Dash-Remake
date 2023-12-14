@@ -40,9 +40,9 @@ public class PlayerSpriteObject : SpriteObject
     void HandleAnimations()
     {
         isInAir = rb.velocity.y != 0;
-        animator.SetBool("IsAttacking", isAttacking);
-        animator.SetBool("IsJumping", this.isJumping);
-        animator.SetBool("IsGrounded", grounded);
+        animator.SetBool(AnimationStates.attacking, isAttacking);
+        animator.SetBool(AnimationStates.jumping, this.isJumping);
+        animator.SetBool(AnimationStates.grounded, grounded);
     }
 
     public void AttackAnimationFinished()
@@ -68,6 +68,9 @@ public class PlayerSpriteObject : SpriteObject
         if (collision.gameObject.CompareTag(Tags.obstacle))
         {
             Debug.Log("Player got hit");
+            //GameManager.Instance.IsGameOver = true;
+            //UIManager.Instance.TurnOnGameOverScreen();
+            GameManager.Instance.GameOver();
         }
 
        
