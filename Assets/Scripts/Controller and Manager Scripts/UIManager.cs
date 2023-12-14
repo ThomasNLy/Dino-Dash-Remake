@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public Slider powerupBar;
 
     public GameObject pauseMenu;
+    public GameObject gameOverScreen;
     public TextMeshProUGUI scoreText;
 
     private void Awake()
@@ -25,6 +26,8 @@ public class UIManager : MonoBehaviour
             Instance = this;
             pauseMenu = GameObject.Find("Pause Menu");
             pauseMenu.SetActive(false);
+            gameOverScreen = GameObject.Find("Game Over Screen");
+            gameOverScreen.SetActive(false);
             
         }
 
@@ -40,11 +43,21 @@ public class UIManager : MonoBehaviour
     public void UpdateUI()
     {
         powerupBar.value = GameManager.Instance.PowerUpPoints;
-        scoreText.text = GameManager.Instance.Score.ToString();
+        scoreText.text = $"Score {GameManager.Instance.Score.ToString()}";
     }
     public void ShowPauseMenu(bool pauseGame)
     {
         
         pauseMenu.SetActive(pauseGame);
+    }
+
+    public void TurnOnGameOverScreen()
+    {
+        gameOverScreen.SetActive(true);
+    }
+
+    public void TurnOffGameOverScreen()
+    {
+        gameOverScreen.SetActive(false);
     }
 }
