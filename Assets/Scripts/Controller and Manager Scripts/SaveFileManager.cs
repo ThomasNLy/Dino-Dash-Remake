@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,7 +41,8 @@ public class SaveFileManager : MonoBehaviour
             Utility.SaveData.highScore = score;
             saveDataInfo.highScore = score;
         }
-
+        string jsonString = JsonUtility.ToJson(saveDataInfo);
+        Debug.Log(jsonString);
 
 
     }
