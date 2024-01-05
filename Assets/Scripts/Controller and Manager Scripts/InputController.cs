@@ -96,10 +96,13 @@ public class InputController : MonoBehaviour
         
     }
 
-
+    /**
+     * 
+     * used by the pause button in the game when clicked will call this function to disable/enable gameplay controls
+     */
     public void PauseGame()
     {
-       // GameManager.Instance.ToggleGamePaused();
+ 
 
         if (GameManager.Instance.GamePaused)
         {
