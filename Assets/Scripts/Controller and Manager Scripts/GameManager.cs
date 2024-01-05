@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         score = 0;
         scrollingSpeed = -5;
         scoreTimer = 0f;
-        Debug.Log(score);
+       
 
 
     }
@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
         gamePaused = !gamePaused;
         if (gamePaused)
         {
-            Debug.Log("PauseGame");
+            
             PauseGame();
           
         }
@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
         {
             ResumeGame();
         }
-        Debug.Log($"Game manager is paused: {gamePaused}");
+  
 
         if (!gameOver)
         {
