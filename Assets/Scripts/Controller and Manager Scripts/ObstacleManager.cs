@@ -45,7 +45,7 @@ public class ObstacleManager : MonoBehaviour
         timer = 0f;
         obstacleList = new GameObject[5];
         Vector3 startingLoc = spawnLocation.position + (Vector3.down * 30);
-        Debug.Log(startingLoc);
+        
         for (int i = 0; i < obstacleList.Length; i++)
         {
 
