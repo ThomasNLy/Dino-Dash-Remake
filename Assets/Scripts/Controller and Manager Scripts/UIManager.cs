@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject gameOverScreen;
     public TextMeshProUGUI scoreText;
-
+    public TextMeshProUGUI highScoreText;
     private void Awake()
     {
 
@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
             pauseMenu.SetActive(false);
             gameOverScreen = GameObject.Find("Game Over Screen");
             gameOverScreen.SetActive(false);
+           
             
         }
 
@@ -37,7 +38,8 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        highScoreText.text = $" Highscore {Utility.SaveData.highScore.ToString()}";
+        highScoreText.gameObject.SetActive(Utility.SaveData.highScore > 0 ? true : false);
     }
 
     public void UpdateUI()
