@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq.Expressions;
+
 using UnityEngine;
 using Utility;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
+    public AudioSource bgMusic;
+    public AudioSource[] soundEffects;
 
     private void Awake()
     {
@@ -24,7 +25,11 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SaveAudioSettings();
+        bgMusic.volume = Utility.SettingsData.bgMusicVol;
+        foreach (AudioSource audio in soundEffects)
+        {
+            audio.volume = Utility.SettingsData.soundEffectVol;
+        }
     }
 
     // Update is called once per frame
@@ -33,32 +38,7 @@ public class AudioManager : MonoBehaviour
         
     }
 
-    public void ChangeAudioSettings(string settingName, float volLevel)
-    {
-        
-        switch (settingName)
-        {
-            case "soundEffect":
-                Utility.SettingsData.soundEffectVol = volLevel;
-                break;
-            case "bgMusic":
-                Utility.SettingsData.bgMusicVol = volLevel;
-                break;
-        }
-                
-        
-    }
-    public void SaveAudioSettings()
-    {
-        SettingsSaveData settingsSaveData = new SettingsSaveData();
-        settingsSaveData.soundEffectVol = Utility.SettingsData.soundEffectVol;
-        settingsSaveData.bgMusicVol= Utility.SettingsData.bgMusicVol;
-        string json = JsonUtility.ToJson(settingsSaveData);
-        string fileLoc =  $"{Application.persistentDataPath}/Settings.json";
-    
-        File.WriteAllText(fileLoc, json);
-
-    }
+   
 
     
 }
