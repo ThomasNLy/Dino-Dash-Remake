@@ -18,6 +18,12 @@ public static class AnimationStates
     public static string grounded = "IsGrounded";
 }
 
+public static class SettingsName
+{
+    public const string soundEffectsVol = "Sound Effects Slider";
+    public const string bgMusicVol = "BG Music Slider";
+}
+
 namespace Utility {
     public static class SaveData
     {

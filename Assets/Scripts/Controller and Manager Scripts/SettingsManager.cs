@@ -20,26 +20,32 @@ public class SettingsManager : MonoBehaviour
         {
             Instance = this;
             LoadAudioSettings();
+            soundEffectsSlider.value = Utility.SettingsData.soundEffectVol;
+            bgMusicSlider.value = Utility.SettingsData.bgMusicVol;
         }
     }
     public void ChangeAudioSettings(Slider s)
     {
-
-        switch (s.gameObject.name)
+        if(AudioManager.Instance != null)
         {
-            case "Sound Effects Slider":
-                Utility.SettingsData.soundEffectVol = s.value;
-                for(int i = 0; i < AudioManager.Instance.soundEffects.Length; i++)
-                {
-                    AudioManager.Instance.soundEffects[i].volume = s.value;
-                }
-                
-                break;
-            case "BG Music Slider":
-                Utility.SettingsData.bgMusicVol = s.value;
-                AudioManager.Instance.bgMusic.volume = s.value;
-                break;
+
+            switch (s.gameObject.name)
+            {
+                case SettingsName.soundEffectsVol:
+                    Utility.SettingsData.soundEffectVol = s.value;
+                    for (int i = 0; i < AudioManager.Instance.soundEffects.Length; i++)
+                    {
+                        AudioManager.Instance.soundEffects[i].volume = s.value;
+                    }
+
+                    break;
+                case SettingsName.bgMusicVol:
+                    Utility.SettingsData.bgMusicVol = s.value;
+                    AudioManager.Instance.bgMusic.volume = s.value;
+                    break;
+            }
         }
+       
 
 
     }
@@ -49,7 +55,7 @@ public class SettingsManager : MonoBehaviour
         if (File.Exists(fileLoc))
         {
             SettingsSaveData settingsSaveData = JsonUtility.FromJson<SettingsSaveData>(File.ReadAllText(fileLoc));
-            Debug.Log(settingsSaveData);
+            
             Utility.SettingsData.bgMusicVol = settingsSaveData.bgMusicVol;
             Utility.SettingsData.soundEffectVol = settingsSaveData.soundEffectVol;
         }
@@ -59,7 +65,8 @@ public class SettingsManager : MonoBehaviour
             settingsSaveData.soundEffectVol = 1.0f;
             settingsSaveData.bgMusicVol = 1.0f;
             string json = JsonUtility.ToJson(settingsSaveData);
-
+            Utility.SettingsData.bgMusicVol = 1.0f;
+            Utility.SettingsData.soundEffectVol = 1.0f;
             File.WriteAllText(fileLoc, json);
         }
 
