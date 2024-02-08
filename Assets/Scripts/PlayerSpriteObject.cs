@@ -56,6 +56,7 @@ public class PlayerSpriteObject : SpriteObject
     {
         isAttacking = true;
         laser.SetActive(true);
+        AudioManager.Instance.soundEffects[0].Play();
     }
     public void HandleAttack()
     {
