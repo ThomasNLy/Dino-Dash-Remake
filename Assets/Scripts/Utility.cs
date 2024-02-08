@@ -24,6 +24,11 @@ public static class SettingsName
     public const string bgMusicVol = "BG Music Slider";
 }
 
+public static class AudioMixerParams {
+    public const string bgMusicVolume = "BgMusicVolume";
+    public const string soundEffectVolume = "SoundEffectVolume";
+}
+
 namespace Utility {
     public static class SaveData
     {

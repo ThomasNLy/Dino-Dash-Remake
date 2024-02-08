@@ -33,15 +33,12 @@ public class SettingsManager : MonoBehaviour
             {
                 case SettingsName.soundEffectsVol:
                     Utility.SettingsData.soundEffectVol = s.value;
-                    for (int i = 0; i < AudioManager.Instance.soundEffects.Length; i++)
-                    {
-                        AudioManager.Instance.soundEffects[i].volume = s.value;
-                    }
+                    AudioManager.Instance.SetSoundEffectVol(s.value);
 
                     break;
                 case SettingsName.bgMusicVol:
                     Utility.SettingsData.bgMusicVol = s.value;
-                    AudioManager.Instance.bgMusic.volume = s.value;
+                    AudioManager.Instance.SetBGMusicVol(s.value);
                     break;
             }
         }
