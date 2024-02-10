@@ -30,6 +30,10 @@ public class PlayerSpriteObject : SpriteObject
 
     public override void UpdateSprite()
     {
+        if (this.isJumping)
+        {
+            AudioManager.Instance.PlayJumpSoundeffect();
+        }
         HandleAnimations();
         base.UpdateSprite();
         
@@ -73,6 +77,7 @@ public class PlayerSpriteObject : SpriteObject
             //UIManager.Instance.TurnOnGameOverScreen();
             GameManager.Instance.GameOver();
         }
+       
 
        
     }

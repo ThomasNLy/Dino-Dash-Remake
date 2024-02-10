@@ -148,6 +148,10 @@ public class GameManager : MonoBehaviour
         {
             scoreTimer = 0f;
             score += 1;
+            if (score % 2 == 0)
+            {
+                ObstacleManager.Instance.SpawnTimerDelay -= 0.25f;
+            }
         }
     }
  

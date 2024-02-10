@@ -46,6 +46,11 @@ public class AudioManager : MonoBehaviour
         mixer.SetFloat(AudioMixerParams.soundEffectVolume, value);
     }
 
+    public void PlayJumpSoundeffect()
+    {
+        soundEffects[2].Play();
+    }
+
 
    
 

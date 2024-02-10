@@ -89,4 +89,10 @@ public class ObstacleManager : MonoBehaviour
             index = 0;
         }
     }
+
+    public float SpawnTimerDelay
+    {
+        get { return spawnTimerDelay; }
+        set { spawnTimerDelay = value; }
+    }
 }
