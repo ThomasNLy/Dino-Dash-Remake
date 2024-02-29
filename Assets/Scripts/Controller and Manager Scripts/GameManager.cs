@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Floor and obstacle scrolling speed")]
     public int scrollingSpeed;
+    public int maxScrollingSpeed;
 
     [Header("Floor parrallax game object")]
     public ScrollingParallax floor;
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
         //score = 0;
         score = 0;
         scrollingSpeed = -5;
+        maxScrollingSpeed = -14;
         scoreTimer = 0f;
        
 
@@ -151,6 +153,11 @@ public class GameManager : MonoBehaviour
             if (score % 2 == 0)
             {
                 ObstacleManager.Instance.SpawnTimerDelay -= 0.25f;
+                if(scrollingSpeed > maxScrollingSpeed)
+                {
+                    scrollingSpeed -= 1;
+                }
+                
             }
         }
     }
