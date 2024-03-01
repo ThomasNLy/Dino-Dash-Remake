@@ -30,6 +30,10 @@ public static class AudioMixerParams {
 }
 
 namespace Utility {
+    /// <summary>
+    /// Static classes for keeping track of the SaveData, and Saved settings to be loaded in between levels after 
+    /// reading it from the save file 
+    /// </summary>
     public static class SaveData
     {
   
@@ -40,6 +44,9 @@ namespace Utility {
         public static float soundEffectVol;
         public static float bgMusicVol;
     }
+    /// <summary>
+    /// A struct used to house the data being saved
+    /// </summary>
     public struct SettingsSaveData
     {
         public float soundEffectVol;
