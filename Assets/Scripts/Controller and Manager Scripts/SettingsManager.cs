@@ -20,8 +20,14 @@ public class SettingsManager : MonoBehaviour
         {
             Instance = this;
             LoadAudioSettings();
-            soundEffectsSlider.value = Utility.SettingsData.soundEffectVol;
-            bgMusicSlider.value = Utility.SettingsData.bgMusicVol;
+            //used to check if the slider exists as the object this script is attached to will be in other scenes also.
+            //that don't have the slider avaiable in it.
+            if (soundEffectsSlider != null)
+            {
+                soundEffectsSlider.value = Utility.SettingsData.soundEffectVol;
+                bgMusicSlider.value = Utility.SettingsData.bgMusicVol;
+            }
+            
         }
     }
     public void ChangeAudioSettings(Slider s)
@@ -97,8 +103,8 @@ public class SettingsManager : MonoBehaviour
             Debug.LogError(e.Message);
             Debug.LogError("No settings save file found creating one");
             SettingsSaveData settingsSaveData = new SettingsSaveData();
-            settingsSaveData.soundEffectVol = 1.0f;
-            settingsSaveData.bgMusicVol = 1.0f;
+            settingsSaveData.soundEffectVol = 0f;
+            settingsSaveData.bgMusicVol = 0f;
             string json = JsonUtility.ToJson(settingsSaveData);
 
             File.WriteAllText(fileLoc, json);

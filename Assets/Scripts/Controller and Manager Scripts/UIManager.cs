@@ -14,6 +14,11 @@ public class UIManager : MonoBehaviour
     public GameObject gameOverScreen;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
+
+    [Header("Settings Menu GameObjects")]
+    public GameObject settingsMenu;
+    public GameObject audioSettingsMenu;
+    public GameObject controlsSettingsMenu;
     private void Awake()
     {
 
@@ -61,5 +66,33 @@ public class UIManager : MonoBehaviour
     public void TurnOffGameOverScreen()
     {
         gameOverScreen.SetActive(false);
+    }
+
+
+
+    public void ShowSettingsMenu()
+    {
+        settingsMenu.SetActive(true);
+    }
+    public void HideSettingsMenu()
+    {
+        settingsMenu.SetActive(false);
+    }
+
+    public void ShowAudioSettinsgMenu()
+    {
+        audioSettingsMenu.SetActive(true);
+    }
+    public void HideAudioSettingsMenu()
+    {
+        audioSettingsMenu.SetActive(false);
+    }
+    public void ShowControlsSettingsMenu()
+    {
+        controlsSettingsMenu.SetActive(true);
+    }
+    public void HideControlsSettingsMenu()
+    {
+        controlsSettingsMenu.SetActive(false);
     }
 }
