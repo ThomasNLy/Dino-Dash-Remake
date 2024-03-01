@@ -27,12 +27,12 @@ public class SettingsManager : MonoBehaviour
                 soundEffectsSlider.value = Utility.SettingsData.soundEffectVol;
                 bgMusicSlider.value = Utility.SettingsData.bgMusicVol;
             }
-            
+
         }
     }
     public void ChangeAudioSettings(Slider s)
     {
-        if(AudioManager.Instance != null)
+        if (AudioManager.Instance != null)
         {
 
             switch (s.gameObject.name)
@@ -48,30 +48,28 @@ public class SettingsManager : MonoBehaviour
                     break;
             }
         }
-       
+
 
 
     }
     public void LoadAudioSettings()
     {
-        string fileLoc = $"{Application.persistentDataPath}/Settings.json";
-        if (File.Exists(fileLoc))
+
+        SettingsSaveData settingsSaveData = new SettingsSaveData();
+        if (Utility.SettingsData.bgMusicVol > -11)
         {
-            SettingsSaveData settingsSaveData = JsonUtility.FromJson<SettingsSaveData>(File.ReadAllText(fileLoc));
-            
-            Utility.SettingsData.bgMusicVol = settingsSaveData.bgMusicVol;
-            Utility.SettingsData.soundEffectVol = settingsSaveData.soundEffectVol;
+            Utility.SettingsData.bgMusicVol = -11;
         }
         else
         {
-            SettingsSaveData settingsSaveData = new SettingsSaveData();
-            settingsSaveData.soundEffectVol = 1.0f;
-            settingsSaveData.bgMusicVol = 1.0f;
-            string json = JsonUtility.ToJson(settingsSaveData);
-            Utility.SettingsData.bgMusicVol = 1.0f;
-            Utility.SettingsData.soundEffectVol = 1.0f;
-            File.WriteAllText(fileLoc, json);
+            settingsSaveData.bgMusicVol = Utility.SettingsData.bgMusicVol;
+            settingsSaveData.soundEffectVol = Utility.SettingsData.soundEffectVol;
+            Utility.SettingsData.bgMusicVol = settingsSaveData.bgMusicVol;
+            Utility.SettingsData.soundEffectVol = settingsSaveData.soundEffectVol;
+
         }
+
+
 
 
 
@@ -79,42 +77,10 @@ public class SettingsManager : MonoBehaviour
     }
     public void SaveAudioSettings()
     {
-        
 
-        try
-        {
-            string fileLoc = $"{Application.persistentDataPath}/Settings.json";
-            if (File.Exists(fileLoc))
-            {
-                SettingsSaveData settingsSaveData = new SettingsSaveData();
-                settingsSaveData.soundEffectVol = Utility.SettingsData.soundEffectVol;
-                settingsSaveData.bgMusicVol = Utility.SettingsData.bgMusicVol;
-                string json = JsonUtility.ToJson(settingsSaveData);
-
-                File.WriteAllText(fileLoc, json);
-            }
-         
-
-         
-        }
-        catch (FileNotFoundException e)
-        {
-            string fileLoc = $"{Application.persistentDataPath}/Settings.json";
-            Debug.LogError(e.Message);
-            Debug.LogError("No settings save file found creating one");
-            SettingsSaveData settingsSaveData = new SettingsSaveData();
-            settingsSaveData.soundEffectVol = 0f;
-            settingsSaveData.bgMusicVol = 0f;
-            string json = JsonUtility.ToJson(settingsSaveData);
-
-            File.WriteAllText(fileLoc, json);
-
-        }
-       
-
-
-
-
+        SettingsSaveData settingsSaveData = new SettingsSaveData();
+        settingsSaveData.soundEffectVol = Utility.SettingsData.soundEffectVol;
+        settingsSaveData.bgMusicVol = Utility.SettingsData.bgMusicVol;
 
     }
 }
