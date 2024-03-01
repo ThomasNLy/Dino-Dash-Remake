@@ -65,10 +65,10 @@ public class SettingsManager : MonoBehaviour
         else
         {
             SettingsSaveData settingsSaveData = new SettingsSaveData();
-            settingsSaveData.soundEffectVol = 1.0f;
-            settingsSaveData.bgMusicVol = 1.0f;
+            settingsSaveData.soundEffectVol = 0f;
+            settingsSaveData.bgMusicVol = -11.0f;
             string json = JsonUtility.ToJson(settingsSaveData);
-            Utility.SettingsData.bgMusicVol = 1.0f;
+            Utility.SettingsData.bgMusicVol = -11.0f;
             Utility.SettingsData.soundEffectVol = 1.0f;
             File.WriteAllText(fileLoc, json);
         }
@@ -103,8 +103,8 @@ public class SettingsManager : MonoBehaviour
             Debug.LogError(e.Message);
             Debug.LogError("No settings save file found creating one");
             SettingsSaveData settingsSaveData = new SettingsSaveData();
-            settingsSaveData.soundEffectVol = 0f;
-            settingsSaveData.bgMusicVol = 0f;
+            settingsSaveData.soundEffectVol = Utility.SettingsData.bgMusicVol;
+            settingsSaveData.bgMusicVol = Utility.SettingsData.soundEffectVol;
             string json = JsonUtility.ToJson(settingsSaveData);
 
             File.WriteAllText(fileLoc, json);
