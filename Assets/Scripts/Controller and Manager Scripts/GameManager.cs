@@ -35,9 +35,10 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
-            Time.timeScale = 1.0f;
+            
         }
-        
+        Time.timeScale = 1.0f;
+
     }
 
     // Start is called before the first frame update
@@ -153,6 +154,7 @@ public class GameManager : MonoBehaviour
             if (score % 2 == 0)
             {
                 ObstacleManager.Instance.SpawnTimerDelay -= 0.25f;
+
                 if(scrollingSpeed > maxScrollingSpeed)
                 {
                     scrollingSpeed -= 1;

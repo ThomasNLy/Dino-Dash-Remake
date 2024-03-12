@@ -34,8 +34,8 @@ public class PowerupSpriteObject : ObstacleSpriteObject
             GameManager.Instance.PowerUpPoints += 1;
             GameManager.Instance.PowerUpPoints = Mathf.Clamp(GameManager.Instance.PowerUpPoints, 0, 5);
             this.Spawn(PowerUpManager.Instance.spawnLoc.position + Vector3.down * 20);
-             
-            AudioManager.Instance.soundEffects[1].Play();
+
+            AudioManager.Instance.PlayCoinSoundeffect();
           
         }
     }

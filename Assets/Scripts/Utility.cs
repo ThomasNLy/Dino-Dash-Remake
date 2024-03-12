@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
+
 using UnityEngine;
 
 public static class Tags
@@ -42,7 +42,7 @@ namespace Utility {
     public static class SettingsData
     {
         public static float soundEffectVol;
-        public static float bgMusicVol;
+        public static float bgMusicVol = -40;
     }
     /// <summary>
     /// A struct used to house the data being saved
