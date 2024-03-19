@@ -73,8 +73,7 @@ public class PlayerSpriteObject : SpriteObject
         if (collision.gameObject.CompareTag(Tags.obstacle))
         {
             Debug.Log("Player got hit");
-            //GameManager.Instance.IsGameOver = true;
-            //UIManager.Instance.TurnOnGameOverScreen();
+            AudioManager.Instance.PlayHitSoundeffect();
             GameManager.Instance.GameOver();
         }
        
