@@ -40,4 +40,9 @@ public class MainMenuUIManager : MonoBehaviour
     {
         controlsSettingsMenu.SetActive(false);
     }
+
+    public void QuitApplication()
+    {
+        Application.Quit();   
+    }
 }
