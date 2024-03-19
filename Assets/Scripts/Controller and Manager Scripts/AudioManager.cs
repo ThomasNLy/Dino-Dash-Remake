@@ -51,8 +51,17 @@ public class AudioManager : MonoBehaviour
         soundEffects[2].Play();
     }
 
+    public void PlayCoinSoundEffect()
+    {
+        soundEffects[1].Play();
+    }
+    public void PlayHitSoundeffect()
+    {
+        soundEffects[3].Play();
+    }
 
-   
 
-    
+
+
+
 }
