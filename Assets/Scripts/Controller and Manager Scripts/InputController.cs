@@ -60,7 +60,7 @@ public class InputController : MonoBehaviour
 
     private void OnExit(InputAction.CallbackContext context)
     {
-        Debug.Log("gameplay menu");
+        
         GameManager.Instance.ToggleGamePaused();
 
         if (GameManager.Instance.GamePaused)

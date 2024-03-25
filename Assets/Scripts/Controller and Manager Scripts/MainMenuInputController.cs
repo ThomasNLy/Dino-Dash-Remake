@@ -9,6 +9,8 @@ public class MainMenuInputController : MonoBehaviour
     public static MainMenuInputController Instance;
     private PlayerInputActions inputs;
     public SceneLoader startButton;
+    public delegate void ExitFunction();
+    public ExitFunction exitFunction;
 
     private void Awake()
     {
@@ -30,25 +32,27 @@ public class MainMenuInputController : MonoBehaviour
         inputs.Menu.Enable();
         inputs.Menu.Start.performed += StartGame;
 
-        inputs.Menu.Exit.performed += ExitGame;
+        inputs.Menu.Exit.performed += Exit;
     }
 
     private void OnDestroy()
     {
-        inputs.Menu.Exit.performed -= ExitGame;
+        inputs.Menu.Exit.performed -= Exit;
         inputs.Menu.Start.performed -=StartGame;
     }
 
-    private void ExitGame(InputAction.CallbackContext ctx)
+    private void Exit(InputAction.CallbackContext ctx)
     {
-        Debug.Log("main menu, Exit GAME");
+        exitFunction();
       
     }
 
     private void StartGame(InputAction.CallbackContext ctx)
     {
 
-        Debug.Log("Game Started");
+        
         startButton.LoadScene("Level1");
     }
+
+   
 }
