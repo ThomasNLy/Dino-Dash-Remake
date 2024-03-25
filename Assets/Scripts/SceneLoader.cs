@@ -12,7 +12,7 @@ public class SceneLoader : MonoBehaviour
     {
         // ensures that time is running since the pause menu freezes time and exiting the game/loading scene doesn't reset it
         Time.timeScale = 1.0f;  
-        Debug.Log("Loading Scene: " + sceneName);
+        
         SceneManager.LoadScene(sceneName);
     }
 }
