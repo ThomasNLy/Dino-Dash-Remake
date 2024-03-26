@@ -21,6 +21,7 @@ public class MainMenuInputController : MonoBehaviour
         else
         {
             Instance = this;
+            exitFunction = Application.Quit;
 
         }
     }

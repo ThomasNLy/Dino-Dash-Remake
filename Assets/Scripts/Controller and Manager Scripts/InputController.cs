@@ -62,6 +62,7 @@ public class InputController : MonoBehaviour
     {
         
         GameManager.Instance.ToggleGamePaused();
+        UIManager.Instance.HideSettingsMenu();
 
         if (GameManager.Instance.GamePaused)
         {
