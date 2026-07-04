@@ -43,7 +43,7 @@ public class PlayerSpriteObject : SpriteObject
 
     void HandleAnimations()
     {
-        isInAir = rb.velocity.y != 0;
+        isInAir = rb.linearVelocity.y != 0;
         animator.SetBool(AnimationStates.attacking, isAttacking);
         animator.SetBool(AnimationStates.jumping, this.isJumping);
         animator.SetBool(AnimationStates.grounded, grounded);
